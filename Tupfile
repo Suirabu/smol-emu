@@ -1,2 +1,2 @@
 : foreach src/*.c |> clang -c %f -o %o |> bin/%B.o
-: bin/*.o |> clang %f -o %o |> bin/Smol-Emu
+: bin/*.o |> clang %f -o %o |> bin/smol-emu
