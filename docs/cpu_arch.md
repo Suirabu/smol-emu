@@ -58,14 +58,6 @@ emulate the functionality of this CPU.
 | shiftl      | 0x34   | a n -- c       | Shifts bits in value `a` to the left `n` times, pushing the result of the operation to the top of the stack. |
 | shiftr      | 0x35   | a n -- c       | Shifts bits in value `a` to the right `n` times, pushing the result of the operation to the top of the stack. |
 
-### Logical operations
-
-| Instruction | Opcode | Signature      | Description |
-|-------------|--------|----------------|-------------|
-| and         | 0x40   | a b -- c       | Performs a logical and operation on values `a` and `b`, pushing the result of the operation to the top of the stack. |
-| or          | 0x41   | a b -- c       | Performs a logical or operation on values `a` and `b`, pushing the result of the operation to the top of the stack. |
-| not         | 0x42   | a b -- c       | Performs a logical not operation on values `a` and `b`, pushing the result of the operation to the top of the stack. |
-
 ### Comparison/Branching operations
 
 #### Result of comparison operation `cmp`
@@ -76,11 +68,11 @@ emulate the functionality of this CPU.
 
 | Instruction | Opcode | Signature      | Description |
 |-------------|--------|----------------|-------------|
-| cmp         | 0x50   | a b -- c       | Compare values `a` and `b`, pushing the resulting information to the top of the stack. |
-| jmp         | 0x51   | --             | Jumps to constant location. |
-| jeq         | 0x52   | a --           | Jumps to constant location if `a`'s equal bit is high. |
-| jne         | 0x53   | a --           | Jumps to constant location if `a`'s equal bit is low. |
-| jlt         | 0x54   | a --           | Jumps to constant location if `a`'s less-than bit is high. |
-| jle         | 0x55   | a --           | Jumps to constant location if `a`'s less-than or `a`'s equal bit are high. |
-| jgt         | 0x56   | a --           | Jumps to constant location if `a`'s greater-than bit is high. |
-| jge         | 0x57   | a --           | Jumps to constant location if `a`'s greater-than bit or `a`'s equal bit are high. |
+| cmp         | 0x40   | a b -- c       | Compare values `a` and `b`, pushing the resulting information to the top of the stack. |
+| jmp         | 0x41   | --             | Jumps to constant location. |
+| jeq         | 0x42   | a --           | Jumps to constant location if `a`'s equal bit is high. |
+| jne         | 0x43   | a --           | Jumps to constant location if `a`'s equal bit is low. |
+| jlt         | 0x44   | a --           | Jumps to constant location if `a`'s less-than bit is high. |
+| jle         | 0x45   | a --           | Jumps to constant location if `a`'s less-than or `a`'s equal bit are high. |
+| jgt         | 0x46   | a --           | Jumps to constant location if `a`'s greater-than bit is high. |
+| jge         | 0x47   | a --           | Jumps to constant location if `a`'s greater-than bit or `a`'s equal bit are high. |
