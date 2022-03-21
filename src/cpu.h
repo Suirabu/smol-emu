@@ -59,4 +59,7 @@ typedef struct {
 bool cpu_load_program(Cpu* cpu, const char* program_data, size_t program_len);
 bool cpu_tick(Cpu* cpu);
 
+bool cpu_write(Cpu* cpu, uint16_t addr, size_t n, const void* data);
+bool cpu_read(Cpu* cpu, uint16_t addr, size_t n, void* data);
+
 #endif // CPU_H
