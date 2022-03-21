@@ -25,11 +25,13 @@ int main(int argc, char** argv) {
 
     Cpu cpu = { 0 };
 
-    const char program_data[] = { OP_PUSH_8, 69, OP_DROP };
+    const char program_data[] = { OP_PUSH_8, 34, OP_PUSH_8, 35, OP_ADD, OP_DROP };
     const char program_len = sizeof(program_data) / sizeof(*program_data);
     cpu_load_program(&cpu, program_data, program_len);
 
     assert(cpu_tick(&cpu) && "Push8");
+    assert(cpu_tick(&cpu) && "Push8");
+    assert(cpu_tick(&cpu) && "Add");
     assert(cpu_tick(&cpu) && "Drop");
 
     return 0;
