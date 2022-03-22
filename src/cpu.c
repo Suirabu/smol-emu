@@ -15,6 +15,12 @@
         return false; \
     }
 
+typedef enum {
+    CMP_EQUAL   = 1 << 0,
+    CMP_GREATER = 1 << 1,
+    CMP_LESS    = 1 << 2,
+} CmpFlags;
+
 static bool cpu_addr_in_bounds(uint16_t addr) {
     return addr < CPU_MEM_SIZE;
 }
@@ -228,6 +234,92 @@ bool cpu_tick(Cpu* cpu) {
         const uint16_t n = cpu->stack[cpu->sp - 1];
         --cpu->sp;
         cpu->stack[cpu->sp - 1] = a >> n;
+        break;
+    }
+
+    // Comparison/Branching operations
+    case OP_CMP: {
+        ASSERT_MIN_STACK_CAPACITY(2);
+        const uint16_t a = cpu->stack[cpu->sp - 2];
+        const uint16_t b = cpu->stack[cpu->sp - 1];
+        
+        uint16_t val = 0;
+
+        if(a == b) {
+            val |= CMP_EQUAL;
+        } else if(a > b) {
+            val |= CMP_GREATER;
+        } else if(a < b) {
+            val |= CMP_LESS;
+        }
+
+        --cpu->sp;
+        cpu->stack[cpu->sp - 1] = val;
+        break;
+    }
+    case OP_JMP: {
+        const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
+        cpu->pc = addr;
+        break;
+    }
+    case OP_JEQ: {
+        const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
+        cpu->pc += 2;
+
+        const uint16_t val = cpu->stack[--cpu->sp];
+        if(val & CMP_EQUAL) {
+            cpu->pc = addr;
+        }
+        break;
+    }
+    case OP_JNE: {
+        const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
+        cpu->pc += 2;
+
+        const uint16_t val = cpu->stack[--cpu->sp];
+        if(!(val & CMP_EQUAL)) {
+            cpu->pc = addr;
+        }
+        break;
+    }
+    case OP_JLT: {
+        const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
+        cpu->pc += 2;
+
+        const uint16_t val = cpu->stack[--cpu->sp];
+        if(val & CMP_LESS) {
+            cpu->pc = addr;
+        }
+        break;
+    }
+    case OP_JLE: {
+        const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
+        cpu->pc += 2;
+
+        const uint16_t val = cpu->stack[--cpu->sp];
+        if(val & (CMP_EQUAL | CMP_LESS)) {
+            cpu->pc = addr;
+        }
+        break;
+    }
+    case OP_JGT: {
+        const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
+        cpu->pc += 2;
+
+        const uint16_t val = cpu->stack[--cpu->sp];
+        if(val & CMP_GREATER) {
+            cpu->pc = addr;
+        }
+        break;
+    }
+    case OP_JGE: {
+        const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
+        cpu->pc += 2;
+
+        const uint16_t val = cpu->stack[--cpu->sp];
+        if(val & (CMP_EQUAL | CMP_GREATER)) {
+            cpu->pc = addr;
+        }
         break;
     }
 
