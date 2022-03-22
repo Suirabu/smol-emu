@@ -107,7 +107,7 @@ bool cpu_tick(Cpu* cpu) {
         cpu->stack[cpu->sp - 2] = c;
         cpu->stack[cpu->sp - 1] = a;
         break;
-     }
+    }
     case OP_STORE_8: {
         ASSERT_MIN_STACK_CAPACITY(2);
         const uint16_t val = cpu->stack[cpu->sp - 2];
@@ -115,7 +115,7 @@ bool cpu_tick(Cpu* cpu) {
         cpu_write(cpu, addr, 1, &val);
         cpu->sp -= 2;
         break;
-     }
+    }
     case OP_STORE_16: {
         ASSERT_MIN_STACK_CAPACITY(2);
         const uint16_t val = cpu->stack[cpu->sp - 2];
@@ -123,7 +123,7 @@ bool cpu_tick(Cpu* cpu) {
         cpu_write(cpu, addr, 2, &val);
         cpu->sp -= 2;
         break;
-     }
+    }
     case OP_LOAD_8: {
         ASSERT_MIN_STACK_CAPACITY(1);
         const uint16_t addr = cpu->stack[cpu->sp - 1];
@@ -131,7 +131,7 @@ bool cpu_tick(Cpu* cpu) {
         cpu_read(cpu, addr, 1, &val);
         cpu->stack[cpu->sp - 1] = val;  // Overwrite addr, effectively dropping it and pushing our new value
         break;
-     }
+    }
     case OP_LOAD_16: {
         ASSERT_MIN_STACK_CAPACITY(1);
         const uint16_t addr = cpu->stack[cpu->sp - 1];
@@ -139,7 +139,7 @@ bool cpu_tick(Cpu* cpu) {
         cpu_read(cpu, addr, 2, &val);
         cpu->stack[cpu->sp - 1] = val;  // Overwrite addr, effectively dropping it and pushing our new value
         break;
-     }
+    }
 
     case OP_ADD: {
         ASSERT_MIN_STACK_CAPACITY(2);
