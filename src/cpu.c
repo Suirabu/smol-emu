@@ -141,6 +141,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
 
+    // Arithmetic operations
     case OP_ADD: {
         ASSERT_MIN_STACK_CAPACITY(2);
         const uint16_t a = cpu->stack[cpu->sp - 2];
@@ -182,6 +183,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
 
+    // Bitwise operations
     case OP_AND: {
         ASSERT_MIN_STACK_CAPACITY(2);
         const uint16_t a = cpu->stack[cpu->sp - 2];
@@ -229,6 +231,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
 
+    // Unknown operation
     default:
         REPORT_ERROR("Unknown opcode 0x%02X found at 0x%04X\n", op, cpu->pc - 1);
         return false;
