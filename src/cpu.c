@@ -182,6 +182,53 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
 
+    case OP_AND: {
+        ASSERT_MIN_STACK_CAPACITY(2);
+        const uint16_t a = cpu->stack[cpu->sp - 2];
+        const uint16_t b = cpu->stack[cpu->sp - 1];
+        --cpu->sp;
+        cpu->stack[cpu->sp - 1] = a & b;
+        break;
+    }
+    case OP_OR: {
+        ASSERT_MIN_STACK_CAPACITY(2);
+        const uint16_t a = cpu->stack[cpu->sp - 2];
+        const uint16_t b = cpu->stack[cpu->sp - 1];
+        --cpu->sp;
+        cpu->stack[cpu->sp - 1] = a | b;
+        break;
+    }
+    case OP_NOT: {
+        ASSERT_MIN_STACK_CAPACITY(1);
+        const uint16_t a = cpu->stack[cpu->sp - 1];
+        cpu->stack[cpu->sp - 1] = ~a;
+        break;
+    }
+    case OP_XOR: {
+        ASSERT_MIN_STACK_CAPACITY(2);
+        const uint16_t a = cpu->stack[cpu->sp - 2];
+        const uint16_t b = cpu->stack[cpu->sp - 1];
+        --cpu->sp;
+        cpu->stack[cpu->sp - 1] = a ^ b;
+        break;
+    }
+    case OP_SHIFTL: {
+        ASSERT_MIN_STACK_CAPACITY(2);
+        const uint16_t a = cpu->stack[cpu->sp - 2];
+        const uint16_t n = cpu->stack[cpu->sp - 1];
+        --cpu->sp;
+        cpu->stack[cpu->sp - 1] = a << n;
+        break;
+    }
+    case OP_SHIFTR: {
+        ASSERT_MIN_STACK_CAPACITY(2);
+        const uint16_t a = cpu->stack[cpu->sp - 2];
+        const uint16_t n = cpu->stack[cpu->sp - 1];
+        --cpu->sp;
+        cpu->stack[cpu->sp - 1] = a >> n;
+        break;
+    }
+
     default:
         REPORT_ERROR("Unknown opcode 0x%02X found at 0x%04X\n", op, cpu->pc - 1);
         return false;
