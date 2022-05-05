@@ -1,16 +1,5 @@
 # CPU Acrhitecture
 
-## General information
-
-<!-- TODO: Clean up awkward wording. Explain the relationship between the static array and the stack pointer more thoroughly. -->
-The main grunt of the work done on the CPU is done through the stack.
-The stack consists of two elements: A static array of 256 16-bit values, accompanied by a
-stack pointer, used to keep track of where the top-most value on the stack lies.
-The value of the stack pointer cannot be made known to the user by means of the usage of and valid
-opcodes, it is instead only important to note the existence of the stack pointer when attempting to
-emulate the functionality of this CPU.
-
-
 ## Instruction set
 
 ### Meta operations
@@ -70,9 +59,9 @@ emulate the functionality of this CPU.
 |-------------|--------|----------------|-------------|
 | cmp         | 0x40   | a b -- c       | Compare values `a` and `b`, pushing the resulting information to the top of the stack. |
 | jmp         | 0x41   | --             | Jumps to constant location. |
-| jeq         | 0x42   | a --           | Jumps to constant location if `a`'s equal bit is high. |
-| jne         | 0x43   | a --           | Jumps to constant location if `a`'s equal bit is low. |
-| jlt         | 0x44   | a --           | Jumps to constant location if `a`'s less-than bit is high. |
-| jle         | 0x45   | a --           | Jumps to constant location if `a`'s less-than or `a`'s equal bit are high. |
-| jgt         | 0x46   | a --           | Jumps to constant location if `a`'s greater-than bit is high. |
-| jge         | 0x47   | a --           | Jumps to constant location if `a`'s greater-than bit or `a`'s equal bit are high. |
+| jeq         | 0x42   | a --           | Jumps to constant location if `a`s equal bit is high. |
+| jne         | 0x43   | a --           | Jumps to constant location if `a`s equal bit is low. |
+| jlt         | 0x44   | a --           | Jumps to constant location if `a`s less-than bit is high. |
+| jle         | 0x45   | a --           | Jumps to constant location if `a`s less-than or `a`s equal bit are high. |
+| jgt         | 0x46   | a --           | Jumps to constant location if `a`s greater-than bit is high. |
+| jge         | 0x47   | a --           | Jumps to constant location if `a`s greater-than bit or `a`s equal bit are high. |
