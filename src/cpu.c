@@ -263,6 +263,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
     case OP_JEQ: {
+        ASSERT_MIN_STACK_CAPACITY(1);
         const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
         cpu->pc += 2;
 
@@ -273,6 +274,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
     case OP_JNE: {
+        ASSERT_MIN_STACK_CAPACITY(1);
         const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
         cpu->pc += 2;
 
@@ -283,6 +285,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
     case OP_JLT: {
+        ASSERT_MIN_STACK_CAPACITY(1);
         const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
         cpu->pc += 2;
 
@@ -293,6 +296,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
     case OP_JLE: {
+        ASSERT_MIN_STACK_CAPACITY(1);
         const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
         cpu->pc += 2;
 
@@ -303,6 +307,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
     case OP_JGT: {
+        ASSERT_MIN_STACK_CAPACITY(1);
         const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
         cpu->pc += 2;
 
@@ -313,6 +318,7 @@ bool cpu_tick(Cpu* cpu) {
         break;
     }
     case OP_JGE: {
+        ASSERT_MIN_STACK_CAPACITY(1);
         const uint16_t addr = (cpu->data[cpu->pc] << 8) + cpu->data[cpu->pc + 1];
         cpu->pc += 2;
 
