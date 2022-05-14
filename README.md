@@ -4,33 +4,36 @@ Smol is a retro-inspired fantasy game console.
 This repository contains the source code for the Smol emulator,
 a program which allows you to play Smol games directly on your computer.
 
+See also
+- [SmolAsm](https://github.com/Suirabu/smol-asm)
+    The Smol assembler
+
 ## Quick Start
 
-Build SmolEmu
+### Build SmolEmu
 
-```sh
+```
 $ make
 ```
 
-Install SmolEmu
+The resulting binary can then be found at `./bin/smol-emu`.
 
-```sh
+### Install SmolEmu
+
+```
 # make install
 ```
 
-Play a game!
+### Play a game!
 
-```sh
-$ ./bin/smol-emu <ROM path>
-
-# Or, if you've already installed SmolEmu locally...
+```
 $ smol-emu <ROM path>
 ```
 
 ## Contributing
 
 Bug fixes and patches are welcome and would be greatly appreciated.
-I will not be accepting PRs containing feature additions or major changes to the functionality of the emulator at this time.
+I will not be accepting PRs containing feature additions or major changes to the functionality of the program at this time.
 
 ## License
 
